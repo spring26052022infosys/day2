@@ -28,4 +28,177 @@ Q What is the use of @Bean?
 A One of the most important annotations in spring is the @Bean annotation which is applied on a method to specify that it returns a bean to be managed by Spring context. Spring Bean annotation is usually declared in Configuration classes methods. This annotation is also a part of the spring core framework.
 
 https://www.geeksforgeeks.org/spring-bean-annotation-with-example/
-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+
+  public class Chinese{
+
+
+  }
+
+  public class SouthIndian{
+
+
+  }
+
+
+  public class Mom {
+      Chinese ch=new Chinese();
+
+  
+ 
+
+  }
+Note: above code is tightly coupled as with the change in plan for the food we have to change the reference
+and object both. 
+------------------------------------------------------------------------------------------------------------
+
+ interface Food{
+
+
+ }
+
+
+  public class Chinese implements Food{
+
+
+  }
+
+  public class SouthIndian implements Food{
+
+
+  }
+
+
+  public class Mom {
+      Food food=new SouthIndian();
+
+  
+ 
+
+  }
+[Note: In this case we made the reference variable common for both the type of Food items]
+
+-------------------------------------------------------------------------------------------
+interface Food{
+
+    void prepareFood();
+ }
+
+
+  public class Chinese implements Food{
+    
+    public void prepareFood(){
+    System.out.println("I love chinese food");
+    }
+
+  }
+
+  public class SouthIndian implements Food{
+    public void prepareFood(){
+    System.out.println("");
+   }
+    
+
+  }
+
+
+  public class Mom {
+      Food food; 
+
+     public Mom(Food food){
+      this.food=food;
+
+
+  }
+
+ public class Main{
+    public static void main(String args[]){
+     Food food=null;
+     Scanner scanner=new Scanner(System.in);
+     System.out.println("Enter your choice");
+     int ch=scanner.nextInt();
+     switch(ch){
+     case 1 : food=new SouthIndian();
+              food.prepareFood(); 
+              break;
+     case 2 : food=new Chinese();
+              food.prepareFood();
+              break;
+     default : System.out.println("Your option is wrong");
+    }
+  }
+}
+
+[ In the above code though we were able to achieve loosely coupled code but it is partial. 
+  So here Spring framework comes in rescue as Spring framework will inject object through the 
+  technique of Dependency Injection. DI mean the object will be created and inject in the code during
+  the runtime and in this way we achieve inversion of control (IOC) as the code which requires the
+  objects dont create the objects it is created by an external entity which is called IOC container.
+  We have two IOC container
+  * BeanFactory
+  * ApplicationContext
+  Both are interface. ApplicationContext is much advanced and it supports more features which helps 
+  in developing Enterprise application.
+  As we cannot create an object of interface as they dont have the implementations of abstract method.
+  We need to create an object of the class which is implementing ApplicationContext.
+ 
+public class Hello{
+  private String name;
+ 
+  public Hello(){
+     name="Ravi";
+  }
+  public void message(){
+   System.out.println("Hello "+name);
+  }
+ 
+ }
+ 
+  /Hello hello=new Hello();
+
+ @Configuration 
+ public class ApplicationConfiguration{
+
+  @Bean(name="greet")
+  public Hello disp(){
+     return new Hello();
+  
+
+  }
+
+ }
+public class Application{
+
+  public static void main(String args[]){
+
+ApplicationContext context=new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+      Hello hello=(Hello)context.getBean("greet");
+      hello.message();                                    
+}
+}
+
+---------------------------------------------------------------------------------------------------------------
+package com.infosys.bean;
+  
+@Component 
+  public class Hello{
+  private String name;
+ 
+  public Hello(){
+     name="Ravi";
+  }
+  public void message(){
+   System.out.println("Hello "+name);
+  }
+ 
+ }
+ 
+
+
+ @Configuration 
+ @ComponentScan(basePackages = "com.infosys.bean") 
+ public class ApplicationConfiguration{
+  }
+
+ }
+
