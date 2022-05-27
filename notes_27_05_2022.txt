@@ -201,4 +201,213 @@ package com.infosys.bean;
   }
 
  }
+----------------------------------------------------------------------------------------------------------
+
+public class Name {
+private String firstName;
+private String middleName;
+private String lastName;
+public String getFirstName() {
+	return firstName;
+}
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
+public String getMiddleName() {
+	return middleName;
+}
+public void setMiddleName(String middleName) {
+	this.middleName = middleName;
+}
+public String getLastName() {
+	return lastName;
+}
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
+
+// setters/getters method
+}
+
+
+public class Student {
+
+  private int roll;
+  private Name name;
+ // setters/getters method  
+public int getRoll() {
+	return roll;
+}
+public void setRoll(int roll) {
+	this.roll = roll;
+}
+public Name getName() {
+	return name;
+}
+public void setName(Name name) {
+	this.name = name;
+}
+
+}
+
+
+public class Main {
+   public static void main(String args[]){
+    Name name=new Name();
+    name.setFirstName("Ravi");
+    name.setMiddleName("Kumar");
+    name.setLastName("Sharma");
+    Student student=new Student();
+    student.setRoll(1);
+   // student.setName(name);
+    System.out.println(student.getRoll());
+    name=student.getName();
+    System.out.println(name);  //null
+    System.out.println(name.getFirstName());  // NullPointerException
+    System.out.println(name.getMiddleName());
+    System.out.println(name.getLastName());
+
+  }
+}
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------
+package com.infosys.demo.autowire.bean;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Name {
+private String firstName;
+private String middleName;
+private String lastName;
+public String getFirstName() {
+	return firstName;
+}
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
+public String getMiddleName() {
+	return middleName;
+}
+public void setMiddleName(String middleName) {
+	this.middleName = middleName;
+}
+public String getLastName() {
+	return lastName;
+}
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
+
+// setters/getters method
+}
+
+
+
+package com.infosys.demo.autowire.bean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component(value="student")
+public class Student {
+
+  private int roll;
+  @Autowired
+  private Name name;
+ // setters/getters method  
+public int getRoll() {
+	return roll;
+}
+public void setRoll(int roll) {
+	this.roll = roll;
+}
+public Name getName() {
+	return name;
+}
+public void setName(Name name) {
+	this.name = name;
+}
+
+}
+
+
+
+package com.infosys.demo.autowire.configure;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages="com.infosys.demo.autowire.bean")
+public class ApplicationConfiguration {
+
+}
+------------------------------------------------------------------------------------------------------------
+
+package com.infosys.demo.autowire.main;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.infosys.demo.autowire.bean.Name;
+import com.infosys.demo.autowire.bean.Student;
+import com.infosys.demo.autowire.configure.ApplicationConfiguration;
+
+public class Main{
+
+    public static void main(String args[]) {
+     ApplicationContext context=new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+         Student student=(Student)context.getBean("student");  
+                   student.setRoll(1);
+         /* Name name=(Name)context.getBean("name");
+            name.setFirstName("Ravi");
+            name.setMiddleName("kumar");
+            name.setLastName("Sharma");
+            student.setName(name);
+          */ 
+                   Name name= student.getName();    
+                   System.out.println(name);  
+                   name.setFirstName("Ravi");
+                   name.setMiddleName("Kumar");
+                   name.setLastName("Sharma");
+                   student.setName(name);
+                   name=student.getName();
+                   System.out.println(name.getFirstName());
+                
+
+    }
+ }
+
+------------------------------------------------------------------------------------------------------
+We have a class called Paper and paper is having a paragraph. 
+
+package com.infosys.practice;
+public class Paragraph {}
+package com.infosys.practice;
+public class Paper {
+  private Paragraph para;
+}
+package com.infosys.practice;
+public class ApplicationConfiguratio{
+
+}
+package com.infosys.practice;
+  public class Main {
+    public static void main(String args[]){
+    // 1) Get the IOC container object
+    // 2) Get the reference of the bean for the Paper class
+    // 3) With the reference of the paper bean get the reference of bean for the Paragraph class
+    // 4) set the paragraph object of Paper class with the line "I am learning Spring and it is interesting". 
+    // 5) get the paragraph object from Paper class and display the content as "I am learning Spring and it is interesting".
+    }
+  }
+
+--------------------------------------------------------------------------------------------------- 
+
+
 
