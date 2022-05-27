@@ -393,7 +393,7 @@ public class Paper {
   private Paragraph para;
 }
 package com.infosys.practice;
-public class ApplicationConfiguratio{
+public class ApplicationConfiguration{
 
 }
 package com.infosys.practice;
@@ -407,7 +407,73 @@ package com.infosys.practice;
     }
   }
 
---------------------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------------------------------- 
 
+public class Paragraph{
+   private String content;
+
+   //setter/getters
+   public void setContent(String content){
+    this.content=content;
+   }
+
+   public String getContent(){
+    return content;
+   }
+}
+
+public class Paper {
+  private Paragraph para;
+   // setter/getters
+
+  public void setPara(Paragraph para){
+   this.para=para;
+  }
+
+  public Paragraph getPara(){
+   return para;
+  }    
+}
+
+
+public class Main2 {
+   public static void main(String args[]) {
+     Paragraph para=new Paragraph();
+     String str="I am learning Spring and it is interesting";
+     para.setContent(str);
+     Paper paper=new Paper();
+     paper.setParagraph(para);
+     Paragraph paraToRead=paper.getPara();
+     String strRead=paraToRead.getContent();
+     System.out.println(strRead);
+    }
+ }
+---------------------------------------------------------------------------------------------------------------
+An Employee is having Address.
+
+public class Address{
+  private int hno;
+  private String streetName;
+  private String cityName;
+  setters/getters
+}
+
+
+public class Employee{
+  private int id;
+  private String name;
+  private Address address;
+  setters/getters
+}
+
+-----------------------------------------------------------------------------------
+1) Create a maven project.
+2) update pom.xml with dependency(spring context).
+3) creating the classes.
+  
+  package com.infosys.demo;
+ 
+  
+ 
 
 
