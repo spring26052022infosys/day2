@@ -1,0 +1,31 @@
+Q Why do we need Maven project?
+A Maven is chiefly used for Java-based projects, helping to download dependencies, which refers to the libraries or JAR files. The tool helps get the right JAR files for each project as there may be different versions of separate packages.
+-------------------------------------------------------------------------------------------------------
+Q What is POM.xml file?
+A What is a POM? A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file that contains information about the project and configuration details used by Maven to build the project. It contains default values for most projects.
+--------------------------------------------------------------------------------------------------------
+Q I am not able to get the steps for creating a maven project in eclipse. Please help.
+A https://www.studytonight.com/spring-framework/spring-maven-project
+--------------------------------------------------------------------------------------------------------------
+Q Should I learn Spring Framework or directly Spring boot?
+A Spring is a widely used J2EE framework. Spring helps you to solve almost any enterprise problem but for that, you have to set up and configure everything manually.
+
+On another side, spring boot provides almost all configuration and set up automatically without doing it manually. As a programmer, our main aim is to make focus on business logic rather than to do manual configuration. Spring takes a lot of time to do the manual configuration from the programmer and eventually the programmer gets loss the focus on its main objective which is to handle/create business logic. Spring boot solves this issue providing by its auto-configuration functionality. And this is the reason for most of the developers to select spring boot over spring.
+
+So it is the choice of directly starting with Spring boot rather than starting with Spring Framework.
+But knowledge of both will help you in your future projects and you have a choice of selecting from Spring
+or choosing Spring Boot project of Spring.
+------------------------------------------------------------------------------------------------------------
+Q What is IOC container in Spring?
+The Spring container is at the core of the Spring Framework. The container will create the objects, wire them together, configure them, and manage their complete life cycle from creation till destruction. The Spring container uses DI to manage the components that make up an application. These objects are called Spring Beans.
+
+The container gets its instructions on what objects to instantiate, configure, and assemble by reading the configuration metadata provided. The configuration metadata can be represented either by XML, Java annotations, or Java code. 
+--------------------------------------------------------------------------------------------------
+Q What is the use of @Configuration?
+A One of the most important annotations in spring is @Configuration annotation which indicates that the class has @Bean definition methods. So Spring container can process the class and generate Spring Beans to be used in the application. This annotation is part of the spring core framework. 
+-------------------------------------------------------------------------------------------------------
+Q What is the use of @Bean? 
+A One of the most important annotations in spring is the @Bean annotation which is applied on a method to specify that it returns a bean to be managed by Spring context. Spring Bean annotation is usually declared in Configuration classes methods. This annotation is also a part of the spring core framework.
+
+https://www.geeksforgeeks.org/spring-bean-annotation-with-example/
+------------------------------------------------------------------------------------------------------
